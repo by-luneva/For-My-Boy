@@ -6,14 +6,14 @@
     <title id="page-title">Astroluv | Robith's Day</title>
     
     <meta property="og:title" content="Astroluv | Robith's Special Day ✨">
-    <meta property="og:description" content="A special cosmic universe written in the stars, built exclusively with love for Robith Habibur Rahman.">
-    <meta property="og:image" content="https://by-luneva.github.io/For-My-Love/thumbnail.png">
-    <meta property="og:url" content="https://by-luneva.github.io/For-My-Love/">
+    <meta property="og:description" content="Sebuah alam semesta spesial yang tertulis di antara bintang-bintang, kubangun sepenuhnya dengan cinta untuk Robith Habibur Rahman.">
+    <meta property="og:image" content="https://by-luneva.github.io/For-My-Boy/thumbnail.png">
+    <meta property="og:url" content="https://by-luneva.github.io/For-My-Boy/">
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Astroluv | Robith's Special Day ✨">
-    <meta name="twitter:description" content="A special cosmic universe written in the stars, built exclusively with love for Robith Habibur Rahman.">
-    <meta name="twitter:image" content="https://by-luneva.github.io/For-My-Love/thumbnail.png">
+    <meta name="twitter:description" content="Sebuah alam semesta spesial yang tertulis di antara bintang-bintang, kubangun sepenuhnya dengan cinta untuk Robith Habibur Rahman.">
+    <meta name="twitter:image" content="https://by-luneva.github.io/For-My-Boy/thumbnail.png">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -230,7 +230,7 @@
                     <button class="key" onclick="App.pressKey('0')">0</button>
                     <button class="key" onclick="App.pressKey('✓')"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></button>
                 </div>
-                <div class="bottom-hint">Hint: 2 angka tanggal, 2 angka bulan, 2 akhiran angka tahun</div>
+                <div class="bottom-hint">Hint: tanggal bulan tahun jadian</div>
             </div>
         </div>
 
@@ -667,7 +667,7 @@
                 document.getElementById('gallery-preview').classList.add('active');
                 history.pushState({ modal: 'preview' }, '');
             }
-            function closePhotoPreview() { document.getElementById('gallery-preview').classList.remove('active'); }
+            function closePhotoPreview() { document.getElementById('gallery-preview').classList.add('active'); }
 
             function toggleClosingBox(show) {
                 const box = document.getElementById('closing-box');
