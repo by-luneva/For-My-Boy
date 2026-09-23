@@ -55,7 +55,7 @@
         .keypad { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; width: 100%; max-width: 220px; }
         .key { background: rgba(255, 255, 255, 0.035); border: 1px solid rgba(231, 226, 206, 0.12); color: rgba(245, 244, 240, 0.8); font-family: 'Cinzel', serif; font-size: 10.5pt; border-radius: 50%; cursor: pointer; width: 52px; height: 52px; display: flex; align-items: center; justify-content: center; transition: transform 0.15s ease, background 0.15s ease; box-shadow: 0 4px 12px rgba(0,0,0,0.25); will-change: transform; }
         .key:active { background: rgba(231, 226, 206, 0.3); color: #F5F4F0; box-shadow: 0 0 15px rgba(231,226,206,0.6); transform: scale(0.92) translateZ(0); }
-        .key svg { width: 16px; height: 16px; fill: currentColor; display: block; }
+        .key svg { width: 16px; height: 16px; fill: currentColor; display: block; pointer-events: none; }
         .bottom-hint { font-family: 'Comfortaa', sans-serif; font-size: 7.5pt; color: rgba(245, 244, 240, 0.35); margin-top: 15px; }
 
         /* ================= 5. GIFT BOX SCREEN ================= */
@@ -431,6 +431,7 @@
             ];
 
             let loaded = 0, enteredPin = "", lastInputTime = 0, currentTrackIndex = -1, isPlaying = false;
+            let activeModal = null; // Menyimpan status modal yang sedang terbuka untuk tombol back
             const CORRECT_PIN = "101024"; 
             
             const tracks = [
@@ -504,17 +505,25 @@
                 const now = Date.now(); if (now - lastInputTime < 100) return; lastInputTime = now;
                 const dots = document.querySelectorAll('.dot');
                 if (key === 'X') {
-                    if (enteredPin.length > 0) { enteredPin = enteredPin.slice(0, -1); dots[enteredPin.length].classList.remove('active'); }
+                    if (enteredPin.length > 0) {
+                        enteredPin = enteredPin.slice(0, -1);
+                        dots[enteredPin.length].classList.remove('active');
+                    }
                 } else if (key === '✓') {
                     if (enteredPin === CORRECT_PIN) {
                         document.getElementById('screen-pin').classList.add('hidden');
                         document.getElementById('screen-gift').classList.remove('hidden');
                         initGiftDrag();
                     } else {
-                        showAlert("Kode PIN-nya salah! Coba cek lagi ya"); enteredPin = ""; dots.forEach(d => d.classList.remove('active'));
+                        showAlert("Kode PIN-nya salah! Coba cek lagi ya"); 
+                        enteredPin = ""; 
+                        dots.forEach(d => d.classList.remove('active'));
                     }
                 } else {
-                    if (enteredPin.length < 6) { enteredPin += key; dots[enteredPin.length - 1].classList.add('active'); }
+                    if (enteredPin.length < 6) { 
+                        enteredPin += key; 
+                        dots[enteredPin.length - 1].classList.add('active'); 
+                    }
                 }
             }
 
@@ -657,33 +666,57 @@
             function showAlert(text) {
                 document.getElementById('modal-text').innerText = text;
                 document.getElementById('custom-alert').classList.add('active');
+                activeModal = 'alert';
                 history.pushState({ modal: 'alert' }, '');
             }
-            function closeModal() { document.getElementById('custom-alert').classList.remove('active'); }
+            function closeModal() { 
+                if (activeModal === 'alert') {
+                    document.getElementById('custom-alert').classList.remove('active');
+                    activeModal = null;
+                }
+            }
 
             function openPhotoPreview(src, cap) {
                 document.getElementById('popup-img').src = src;
                 document.getElementById('popup-caption').innerText = cap;
                 document.getElementById('gallery-preview').classList.add('active');
+                activeModal = 'preview';
                 history.pushState({ modal: 'preview' }, '');
             }
-            function closePhotoPreview() { document.getElementById('gallery-preview').classList.add('active'); }
+            function closePhotoPreview() { 
+                if (activeModal === 'preview') {
+                    document.getElementById('gallery-preview').classList.remove('active');
+                    activeModal = null;
+                }
+            }
 
             function toggleClosingBox(show) {
                 const box = document.getElementById('closing-box');
                 if (show) { 
                     box.classList.add('active'); 
                     burstConfetti(); 
+                    activeModal = 'closing';
                     history.pushState({ modal: 'closing' }, '');
                 } else { 
-                    box.classList.remove('active'); 
+                    if (activeModal === 'closing') {
+                        box.classList.remove('active');
+                        activeModal = null;
+                    }
                 }
             }
 
-            window.addEventListener('popstate', () => {
-                if (document.getElementById('custom-alert').classList.contains('active')) closeModal();
-                else if (document.getElementById('gallery-preview').classList.contains('active')) closePhotoPreview();
-                else if (document.getElementById('closing-box').classList.contains('active')) toggleClosingBox(false);
+            // Perbaikan penanganan tombol back agar konsisten menutup popup/modal satu per satu
+            window.addEventListener('popstate', (event) => {
+                if (activeModal === 'alert') {
+                    document.getElementById('custom-alert').classList.remove('active');
+                    activeModal = null;
+                } else if (activeModal === 'preview') {
+                    document.getElementById('gallery-preview').classList.remove('active');
+                    activeModal = null;
+                } else if (activeModal === 'closing') {
+                    document.getElementById('closing-box').classList.remove('active');
+                    activeModal = null;
+                }
             });
 
             /* ================= CONFETTI ANIMATION ENGINE ================= */
