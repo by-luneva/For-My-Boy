@@ -6,13 +6,13 @@
     <title id="page-title">Astroluv | Robith's Day</title>
     
     <meta property="og:title" content="Astroluv | Robith's Special Day ✨">
-    <meta property="og:description" content="Sebuah alam semesta spesial yang tertulis di antara bintang-bintang, kubangun sepenuhnya dengan cinta untuk Robith Habibur Rahman.">
+    <meta property="og:description" content="A special cosmic universe written in the stars, built exclusively with love for Robith Habibur Rahman.">
     <meta property="og:image" content="https://by-luneva.github.io/For-My-Boy/thumbnail.png">
     <meta property="og:url" content="https://by-luneva.github.io/For-My-Boy/">
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Astroluv | Robith's Special Day ✨">
-    <meta name="twitter:description" content="Sebuah alam semesta spesial yang tertulis di antara bintang-bintang, kubangun sepenuhnya dengan cinta untuk Robith Habibur Rahman.">
+    <meta name="twitter:description" content="A special cosmic universe written in the stars, built exclusively with love for Robith Habibur Rahman.">
     <meta name="twitter:image" content="https://by-luneva.github.io/For-My-Boy/thumbnail.png">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -431,7 +431,7 @@
             ];
 
             let loaded = 0, enteredPin = "", lastInputTime = 0, currentTrackIndex = -1, isPlaying = false;
-            let activeModal = null; // Menyimpan status modal yang sedang terbuka untuk tombol back
+            let activeModal = null; 
             const CORRECT_PIN = "101024"; 
             
             const tracks = [
@@ -705,7 +705,6 @@
                 }
             }
 
-            // Perbaikan penanganan tombol back agar konsisten menutup popup/modal satu per satu
             window.addEventListener('popstate', (event) => {
                 if (activeModal === 'alert') {
                     document.getElementById('custom-alert').classList.remove('active');
