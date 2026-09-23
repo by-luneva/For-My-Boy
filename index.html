@@ -357,9 +357,10 @@
                         </div>
                     </div>
                     <div class="playlist-card">
-                        <div class="track" id="t1" onclick="App.selectTrack('Sialan', 'Juicy Luicy', 't1', 'Sialan.jpg', 'Juicy Luicy - Sialan.mp3')"><span>1. Sialan</span><span>Juicy Luicy</span></div>
-                        <div class="track" id="t2" onclick="App.selectTrack('Teman Hidup', 'Tulus', 't2', 'Teman Hidup.jpg', 'Tulus - Teman Hidup.mp3')"><span>2. Teman Hidup</span><span>Tulus</span></div>
-                        <div class="track" id="t3" onclick="App.selectTrack('XXL', 'Lany', 't3', 'XXL.jpg', 'LANY - XXL.mp3')"><span>3. XXL</span><span>Lany</span></div>
+                        <div class="track" id="t1" onclick="App.selectTrack('Kenangan Terindah', 'Mahen', 't1', 'Kenangan Terindah.jpg', 'Mahen - Kenangan Terindah.mp3')"><span>1. Kenangan Terindah</span><span>Mahen</span></div>
+                        <div class="track" id="t2" onclick="App.selectTrack('Penjaga Hati', 'Nadhif Basalamah', 't2', 'Penjaga Hati.jpg', 'Nadhif Basalamah - Penjaga Hati.mp3')"><span>2. Penjaga Hati</span><span>Nadhif Basalamah</span></div>
+                        <div class="track" id="t3" onclick="App.selectTrack('Bergema Sampai Selamanya', 'Nadhif Basalamah', 't3', 'Bergema Sampai Selamanya.jpg', 'Nadhif Basalamah - Bergema Sampai Selamanya.mp3')"><span>3. Bergema Sampai Selamanya</span><span>Nadhif Basalamah</span></div>
+                        <div class="track" id="t4" onclick="App.selectTrack('Doaku Untukmu Sayang', 'Wali Band', 't4', 'Doaku Untukmu Sayang.jpg', 'Wali Band - Doaku Untukmu Sayang.mp3')"><span>4. Doaku Untukmu Sayang</span><span>Wali Band</span></div>
                     </div>
                 </section>
 
@@ -426,8 +427,8 @@
                 '1-loading-kaset.png', 'kado-tutup.png', 'kado-kotak.png', 
                 'planet1.png', 'planet2.png', 'planet3.png', 'planet4.png', 'planet5.png', 'planet6.png', 'planet7.png', 'planet8.png', 'planet9.png', 'planet10.png', 
                 'foto1.jpg', 'foto2.jpg', 'foto3.jpg', 'thumbnail.png', 
-                'Sialan.jpg', 'Teman Hidup.jpg', 'XXL.jpg', 
-                'Juicy Luicy - Sialan.mp3', 'Tulus - Teman Hidup.mp3', 'LANY - XXL.mp3'
+                'Kenangan Terindah.jpg', 'Penjaga Hati.jpg', 'Bergema Sampai Selamanya.jpg', 'Doaku Untukmu Sayang.jpg', 
+                'Mahen - Kenangan Terindah.mp3', 'Nadhif Basalamah - Penjaga Hati.mp3', 'Nadhif Basalamah - Bergema Sampai Selamanya.mp3', 'Wali Band - Doaku Untukmu Sayang.mp3'
             ];
 
             let loaded = 0, enteredPin = "", lastInputTime = 0, currentTrackIndex = -1, isPlaying = false;
@@ -435,9 +436,10 @@
             const CORRECT_PIN = "101024"; 
             
             const tracks = [
-                { title: 'Sialan', artist: 'Juicy Luicy', id: 't1', cover: 'Sialan.jpg', src: 'Juicy Luicy - Sialan.mp3' },
-                { title: 'Teman Hidup', artist: 'Tulus', id: 't2', cover: 'Teman Hidup.jpg', src: 'Tulus - Teman Hidup.mp3' },
-                { title: 'XXL', artist: 'Lany', id: 't3', cover: 'XXL.jpg', src: 'LANY - XXL.mp3' }
+                { title: 'Kenangan Terindah', artist: 'Mahen', id: 't1', cover: 'Kenangan Terindah.jpg', src: 'Mahen - Kenangan Terindah.mp3' },
+                { title: 'Penjaga Hati', artist: 'Nadhif Basalamah', id: 't2', cover: 'Penjaga Hati.jpg', src: 'Nadhif Basalamah - Penjaga Hati.mp3' },
+                { title: 'Bergema Sampai Selamanya', artist: 'Nadhif Basalamah', id: 't3', cover: 'Bergema Sampai Selamanya.jpg', src: 'Nadhif Basalamah - Bergema Sampai Selamanya.mp3' },
+                { title: 'Doaku Untukmu Sayang', artist: 'Wali Band', id: 't4', cover: 'Doaku Untukmu Sayang.jpg', src: 'Wali Band - Doaku Untukmu Sayang.mp3' }
             ];
 
             const wishes = [
@@ -555,7 +557,7 @@
                         document.getElementById('screen-main').classList.remove('hidden');
                         document.getElementById('app-wrapper').classList.add('allow-scroll'); 
                         initScrollAnimation();
-                        selectTrack('Sialan', 'Juicy Luicy', 't1', 'Sialan.jpg', 'Juicy Luicy - Sialan.mp3');
+                        selectTrack('Kenangan Terindah', 'Mahen', 't1', 'Kenangan Terindah.jpg', 'Mahen - Kenangan Terindah.mp3');
                     }, 550);
                 }
                 lid.addEventListener('touchstart', start, { passive: true });
